@@ -10,7 +10,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.GlanceExample">
+        android:theme="@style/Theme.GlanceExample"
+        tools:targetApi="31">
+
+        <!-- ВАШ ПРИЁМНИК ВИДЖЕТА ДОЛЖЕН БЫТЬ ЗДЕСЬ -->
+        <receiver
+            android:name=".glance.StockAppWidgetReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/stock_app_widget_info" />
+        </receiver>
+
+        <!-- А ВОТ ВАША ACTIVITY -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -19,10 +34,10 @@
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
